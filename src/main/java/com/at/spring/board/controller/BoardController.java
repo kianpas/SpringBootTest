@@ -1,0 +1,41 @@
+package com.at.spring.board.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.at.spring.board.model.service.BoardService;
+import com.at.spring.board.model.vo.Board;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Controller
+@RequestMapping("/board")
+@Slf4j
+public class BoardController {
+
+	@Autowired
+	private BoardService boardService;
+	
+	@GetMapping("/boardList")
+	public String boardList(ModelAndView mav) {
+		
+		return "board/boardList";
+	}
+	
+	@GetMapping("/selectBoardList")
+	@ResponseBody
+	public List<Board> selectboardList() {
+		List<Board> boardList = boardService.selectBoardList();
+		log.debug("{}", boardList);
+
+		return boardList;
+	}
+	
+}
