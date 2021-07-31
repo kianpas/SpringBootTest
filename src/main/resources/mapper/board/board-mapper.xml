@@ -6,4 +6,33 @@
 	<select id="selectBoardList" resultType="board">
 		select * from board order by reg_date desc
 	</select>
+	<select id="selectOneBoard" resultType="board">
+		select * from board where no = #{no}
+	</select>
+	<insert id="insertBoard">
+		insert into
+			board (no, title, member_id, content)
+		values(
+			seq_board_no.nextval,
+			#{title},
+			#{memberId},
+			#{content}
+		)
+		<!-- 발급받은 board pk no값을 파라미터 board객체의 property no에 저장한다. -->
+		<selectKey keyProperty="no" resultType="_int" order="AFTER">
+			select 
+				seq_board_no.currval
+			from
+				dual
+		</selectKey>
+	</insert>
+	<update id="updateBoard">
+		update board
+		set title = #{title}, content = #{content}
+		where no = #{no}
+	</update>
+	<delete id="deleteBoard">
+		delete from board
+		where no = #{no}
+	</delete>
 </mapper>

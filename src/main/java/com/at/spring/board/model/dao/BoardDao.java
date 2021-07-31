@@ -8,4 +8,12 @@ public interface BoardDao {
 
 	List<Board> selectBoardList();
 
+	Board selectOneBoard(int no);
+
+	int insertBoard(Board board);
+
+	int updateBoard(Board board);
+
+	int deleteBoard(int no);
+
 }

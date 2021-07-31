@@ -29,7 +29,15 @@ body {
 }
 
 a {
-    text-decoration: none
+	display:grid;
+	grid-template-columns: max-content max-content;
+    text-decoration: none;
+    color: var(--first-color-light);
+    align-items: center;
+}
+
+a:hover{
+    color: var(--white-color);
 }
 
 .header {
@@ -121,7 +129,8 @@ a {
 }
 
 .nav_icon {
-    font-size: 1.25rem
+    font-size: 1.25rem;
+    padding-right: 10px;
 }
 
 .show {

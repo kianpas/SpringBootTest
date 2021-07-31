@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%-- <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,34 +50,25 @@
 				</a>
 				<div class="nav_list">
 					<ul style="padding-left: 0px;">
-						<li class="nav_link active" id="index-link"> 
-							<i class='bx bx-grid-alt nav_icon'></i> 
-							<span class="nav_name">Dashboard</span>
+						<li class="nav_link" id="index-link"><i
+							class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span>
 						</li>
-						<li class="nav_link"> 
-							<i class='bx bx-user nav_icon'></i>
-							<span class="nav_name">Users</span>
+						<li class="nav_link"><i class='bx bx-user nav_icon'></i> <span
+							class="nav_name">Users</span></li>
+						<li class="nav_link" id="board-link"><i
+							class='bx bx-spreadsheet nav_icon'></i> <span class="nav_name">Board</span>
+
 						</li>
-						<li class="nav_link" id="board-link">
-							<i class='bx bx-spreadsheet nav_icon'></i> 
-							<span class="nav_name">Board</span> 
-						</li> 
-						<li class="nav_link"> 
-							<i class='bx bx-message-square-detail nav_icon'></i> 
-							<span class="nav_name">Messages</span>
-						</li> 
-						<li class="nav_link"> 
-							<i class='bx bx-bookmark nav_icon'></i> 
-							<span class="nav_name">Bookmark</span>
-						</li> 
-						<li class="nav_link"> 
-							<i class='bx bx-folder nav_icon'></i>
-							<span class="nav_name">Files</span>
-						</li> 
-						<li class="nav_link" id="stat-link"> 
-							<i class='bx bx-bar-chart-alt-2 nav_icon'></i> 
-							<span class="nav_name">Stats</span>
-						</li>
+						<li class="nav_link"><i
+							class='bx bx-message-square-detail nav_icon'></i> <span
+							class="nav_name">Messages</span></li>
+						<li class="nav_link" id="bookmark"><i
+							class='bx bx-bookmark nav_icon'></i> <span class="nav_name">Bookmark</span></li>
+						<li class="nav_link"><i class='bx bx-folder nav_icon'></i> <span
+							class="nav_name">Files</span></li>
+						<li class="nav_link" id="stat-link"><i
+							class='bx bx-bar-chart-alt-2 nav_icon'></i> <span
+							class="nav_name">Stats</span></li>
 					</ul>
 				</div>
 			</div>
@@ -82,91 +77,22 @@
 			</a>
 		</nav>
 	</div>
-	<div id="body-content">
-		<jsp:include page="/WEB-INF/views/common/dashBoard.jsp" />
-	</div>
+	<div id="body-content"></div>
+
 	<script>
 
-	
-	$("#index-link").on("click", function(){
-		
-		window.history.pushState(null, null, "${pageContext.request.contextPath}/");	
-		
-		const html = `<jsp:include page="/WEB-INF/views/common/dashBoard.jsp" />`;
-		$("#body-content").html(html);
-		 window.onpopstate = function(event) {  //뒤로가기 이벤트를 캐치합니다.
-
-			  history.back();   // pushState로 인하여 페이지가 하나 더 생성되기 떄문에 한번에 뒤로가기 위해서 뒤로가기를 한번 더 해줍니다.
-
-			  console.log('뒤로가기 체크'); 
-
-			 };
-
-
-		
-	});
-
-
-	$("#board-link").on("click", function(){
-		const html = `<jsp:include page="/WEB-INF/views/board/boardList.jsp" />`;
-		$("#body-content").html(html);	
-
-		const selectBoardList = () => {
-			
-			$.ajax({
-				url:"${pageContext.request.contextPath}/board/selectBoardList",
-				method:"GET",
-				contentType:"application/json; charset=utf-8",
-				success:data => {
-					console.log(data)
-					
-					let html = `<thead>
-									<tr>
-										<th scope="col">번호</th>
-										<th scope="col">제목</th>
-										<th scope="col">작성자</th>
-										<th scope="col">작성일</th>
-									</tr>
-								</thead>`;
-					const $container = $("#boardList");
-
-					$.each(data, (key, value) => {
-						
-							
-						const {no, title, memberId, regDate} = value;
-						const reg = moment(regDate).format("YYYY[년] MMMM Do ");
-						html += `<tr id="board-detail">
-										<td>\${no}</td>
-										<td>\${title}</td>
-										<td>\${memberId}</td>
-										<td>\${reg}</td>
-									</tr>`;
-
-					});
-					
-					$container.html(html);
-					history.pushState(null, null, "${pageContext.request.contextPath}/board/boardList");
-
-					 
-					
-				},
-				error:console.log
-
-
-			});
-			
-		}
-		
-		selectBoardList();
-
-		$(document).on("click", "#board-detail", function(e){
-			console.log(e)
-
-		})
-		
-
+	$("#board-link").on("click", ()=>{
+		console.log(111)
+		location.href="${pageContext.request.contextPath}/board/boardList";
 	})
-	
+
+/* $("#bookmark").on("click", ()=>{
+	console.log(111)
+	const html = `<jsp:include page='/WEB-INF/views/common/dashBoard.jsp'/>`;
+	$("#body-content").empty();
+	$("#body-content").html(html);
+})
+ */
 document.addEventListener("DOMContentLoaded", function(event) {
 
 		const showNavbar = (toggleId, navId, bodyId, headerId) =>{
@@ -206,24 +132,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 		// Your code to run since DOM is loaded and ready
 	
-		
-		/*
-			const html = `<jsp:include page="/WEB-INF/views/common/dashBoard.jsp" />`;
-			$("#body-content").html(html);	
-			window.history.pushState(null, null, "${pageContext.request.contextPath}/dashBoard");	
 
-			/* $(window).on('popstate', function(event) {
-		        window.location = document.location.href;
-		    }); 
-		}) */
-	
-	
-
-		$("#stat-link").on("click", function(){
-		/* 	$("#body-content").load("stat.jsp"); */
-
-		})
-		
 
 				
 	
