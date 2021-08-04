@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<jsp:include page="/index.jsp" />
+<jsp:include page="/index.jsp" />
 <div>
 	<h1>Board</h1>
 	<button type="button" class="btn btn-primary" onClick="boardForm();">작성</button>
+	<table class="table table-hover" id="boardList">
+	</table>
 </div>
 
-<table class="table table-hover" id="boardList">
-</table>
 <script>
 
 const selectBoardList = () => {
@@ -57,5 +57,8 @@ const boardForm = () =>{
 	location.href="${pageContext.request.contextPath}/board/boardForm";
 }
 
-selectBoardList();
+
+$(function(){
+	selectBoardList();
+})
 </script>

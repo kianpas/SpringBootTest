@@ -34,6 +34,7 @@ $("#boardEnrollFrm").submit(e => {
 	$.ajax({
 		url:"${pageContext.request.contextPath}/board/boardEnroll",
 		data:board,
+		method:"post",
 		dataType:"json",
 	})
 	.done(data=>{

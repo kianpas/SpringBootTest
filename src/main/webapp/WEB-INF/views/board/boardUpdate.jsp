@@ -18,12 +18,17 @@
 				name="content" rows="3"></textarea>
 		</div>
 		<button type="submit" class="btn btn-primary">전송</button>
-		<button class="btn btn-danger">취소</button>
+		<button class="btn btn-danger" id="back-btn">취소</button>
 	</form>
 	<div id="board-datail"></div>
 </div>
 
 <script>
+$("#back-btn").on("click", ()=>{
+	console.log(1111111)
+})
+
+
 $("#boardUpdateFrm").submit(event=>{
 	event.preventDefault();
 	console.log(event.target)

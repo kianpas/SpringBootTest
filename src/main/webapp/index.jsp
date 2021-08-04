@@ -2,8 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%-- <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%> --%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,15 +34,29 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/style.css">
+
+
 </head>
 <body id="body-pd">
 	<header class="header" id="header">
 		<div class="header_toggle">
 			<i class='bx bx-menu' id="header-toggle"></i>
 		</div>
-		<div class="header_img">
-			<img src="https://i.imgur.com/hczKIze.jpg" alt="">
-		</div>
+		<sec:authorize access="isAnonymous()">
+			<form:form action="${pageContext.request.contextPath}/login" method="post">
+			<button>로그인</button>
+			</form:form>
+		</sec:authorize>
+		<sec:authorize access="isAuthenticated()">
+		<sec:authentication property="principal" var="principal" />
+		<p>${principal.id}</p>
+			<div class="header_img">
+				<img src="https://i.imgur.com/hczKIze.jpg" alt="">
+			</div>
+			<form:form action="${pageContext.request.contextPath}/logout" method="post">
+			<button>로그아웃</button>
+			</form:form>
+		</sec:authorize>
 	</header>
 	<div class="l-navbar" id="nav-bar">
 		<nav class="nav">
@@ -53,11 +69,10 @@
 						<li class="nav_link" id="index-link"><i
 							class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span>
 						</li>
-						<li class="nav_link"><i class='bx bx-user nav_icon'></i> <span
-							class="nav_name">Users</span></li>
+						<li class="nav_link" id="user-link"><i
+							class='bx bx-user nav_icon'></i> <span class="nav_name">Users</span></li>
 						<li class="nav_link" id="board-link"><i
 							class='bx bx-spreadsheet nav_icon'></i> <span class="nav_name">Board</span>
-
 						</li>
 						<li class="nav_link"><i
 							class='bx bx-message-square-detail nav_icon'></i> <span
@@ -80,10 +95,17 @@
 	<div id="body-content"></div>
 
 	<script>
-
+	$("#index-link").on("click", ()=>{
+		location.href="${pageContext.request.contextPath}";
+	})
+	
 	$("#board-link").on("click", ()=>{
-		console.log(111)
 		location.href="${pageContext.request.contextPath}/board/boardList";
+	})
+	
+	
+	$("#user-link").on("click", ()=>{
+		location.href="${pageContext.request.contextPath}/member/memberDetail";
 	})
 
 /* $("#bookmark").on("click", ()=>{

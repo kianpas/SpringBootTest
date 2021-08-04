@@ -56,5 +56,9 @@ const boardDetail = () => {
 	.fail(console.log)
 }
 
-boardDetail();
+
+$(function() {
+	boardDetail();
+	
+})
 </script>
