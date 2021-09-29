@@ -14,20 +14,23 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/member")
 @Slf4j
 public class MemberController {
-	
+
 	@GetMapping("/memberLogin")
 	public void memberLogin() {
-		
+
 	}
+
 	@GetMapping("/memberDetail")
 	public String memberDetail(Authentication authentication, Model model) {
-		//1. SecurityContextHolder로 부터 가져오기
-		
-		Member principal = (Member) authentication.getPrincipal();
-		model.addAttribute("loginMember", principal);
-		log.debug("authentication = {}", authentication);
-		log.debug("principal = {}", principal);
-		
-		return "member/memberDetail";
+		try {
+			// 1. SecurityContextHolder로 부터 가져오기
+			Member principal = (Member) authentication.getPrincipal();
+			model.addAttribute("loginMember", principal);
+			log.debug("authentication = {}", authentication);
+			log.debug("principal = {}", principal);
+			return "member/memberDetail";
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 }

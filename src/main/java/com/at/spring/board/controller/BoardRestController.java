@@ -31,46 +31,64 @@ public class BoardRestController {
 
 	@GetMapping("/selectBoardList")
 	public List<Board> selectboardList() {
-		List<Board> boardList = boardService.selectBoardList();
-		log.debug("boardList {}", boardList);
+		try {
+			List<Board> boardList = boardService.selectBoardList();
+			// log.debug("boardList {}", boardList);
 
-		return boardList;
+			return boardList;
+		} catch (Exception e) {
+			throw e;
+		}
+
 	}
 
 	@GetMapping("/boardDetail/{no}")
 	public Board boardDetail(@PathVariable int no) {
-		log.debug("no {}", no);
-		Board board = boardService.selectOneBoard(no);
-		log.debug("board {}", board);
+		try {
+			log.debug("no {}", no);
+			Board board = boardService.selectOneBoard(no);
+			log.debug("board {}", board);
 
-		return board;
-
+			return board;
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 	@PostMapping("/boardEnroll")
 	public String boardEnroll(@ModelAttribute Board board) {
-		log.debug("board {}", board);
-		int result = boardService.insertBoard(board);
-		return "redirect:/board/boardDetail?no=" + board.getNo();
+		try {
+			log.debug("board {}", board);
+			int result = boardService.insertBoard(board);
+			return "redirect:/board/boardDetail?no=" + board.getNo();
+		} catch (Exception e) {
+			throw e;
+		}
 
 	}
 
 	@PutMapping("/boardUpdate/{no}")
 	public int boardUpdate(@RequestBody Board board, @PathVariable int no) {
-		log.debug("no {}", no);
-		log.debug("board {}", board);
-		int result = boardService.updateBoard(board);
+		try {
+			log.debug("no {}", no);
+			log.debug("board {}", board);
+			int result = boardService.updateBoard(board);
 
-		return result;
-
+			return result;
+		} catch (Exception e) {
+			throw e;
+		}
 	}
-	
+
 	@DeleteMapping("/boardDelete/{no}")
 	public int boardDelete(@PathVariable int no) {
-		log.debug("no {}", no);
-		int result = boardService.deleteBoard(no);
+		try {
+			log.debug("no {}", no);
+			int result = boardService.deleteBoard(no);
 
-		return result;
-
+			return result;
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 }
