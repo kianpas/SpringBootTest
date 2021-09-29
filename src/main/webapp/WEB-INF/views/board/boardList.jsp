@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:include page="/index.jsp" />
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 <div>
 	<h1>Board</h1>
 	<button type="button" class="btn btn-primary" onClick="boardForm();">작성</button>
