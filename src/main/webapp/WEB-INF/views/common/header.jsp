@@ -35,11 +35,11 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/style.css">
 </head>
-<body id="body-pd">
-	<header class="header" id="header">
-		<div class="header_toggle">
+<body id="body-pd" class="body-pd">
+	<header class="header body-pd" id="header">
+		<!-- <div class="header_toggle">
 			<i class='bx bx-menu' id="header-toggle"></i>
-		</div>
+		</div> -->
 		<sec:authorize access="isAnonymous()">
 			<form:form action="${pageContext.request.contextPath}/login"
 				method="post">
@@ -58,7 +58,7 @@
 			</form:form>
 		</sec:authorize>
 	</header>
-	<div class="l-navbar" id="nav-bar">
+	<div class="l-navbar show" id="nav-bar">
 		<nav class="nav">
 			<div>
 				<a href="#" class="nav_logo"> <i
@@ -70,7 +70,7 @@
 							class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span>
 						</li>
 						<li class="nav_link" id="user-link"><i
-							class='bx bx-user nav_icon'></i> <span class="nav_name">Users</span></li>
+							class='bx bx-user nav_icon'></i> <span class="nav_name">Profile</span></li>
 						<li class="nav_link" id="board-link"><i
 							class='bx bx-spreadsheet nav_icon'></i> <span class="nav_name">Board</span>
 						</li>
@@ -111,7 +111,7 @@
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
-		const showNavbar = (toggleId, navId, bodyId, headerId) =>{
+		/* const showNavbar = (toggleId, navId, bodyId, headerId) =>{
 			const toggle = document.getElementById(toggleId),
 				nav = document.getElementById(navId),
 				bodypd = document.getElementById(bodyId),
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			}
 		}
 
-		showNavbar('header-toggle','nav-bar','body-pd','header')
+		showNavbar('header-toggle','nav-bar','body-pd','header') */
 
 		/*===== LINK ACTIVE =====*/
 		const linkColor = document.querySelectorAll('.nav_link')

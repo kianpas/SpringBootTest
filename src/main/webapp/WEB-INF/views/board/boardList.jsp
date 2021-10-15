@@ -3,7 +3,14 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <div>
 	<h1>Board</h1>
-	<button type="button" class="btn btn-primary" onClick="boardForm();">작성</button>
+	<div class="row">
+		<div class="col offset-md-10">
+			<button type="button" class="btn btn-primary" onClick="boardForm();">작성</button>
+		</div>
+	</div>
+	<!-- <div class="col align-self-end">
+		<button type="button" class="btn btn-primary" onClick="boardForm();">작성</button>
+	</div> -->
 	<table class="table table-hover" id="boardList">
 	</table>
 </div>

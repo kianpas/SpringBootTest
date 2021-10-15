@@ -1,15 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <div>
-	<%-- <h2>${board.no}  ${board.title}</h2>
-	<p>작성자 ${board.memberId}</p>
-	<p>작성일 ${board.regDate}</p>
-	<h3>내용</h3>
-	<p>${board.content}</p> --%>
-	<div id="board-datail">
-	</div>
-
+	<sec:authentication property="principal" var="principal" />
+	<div id="board-datail"></div>
 </div>
 <script>
 const boardUpdate = (no) =>{
@@ -22,9 +18,9 @@ const boardDelete = (no) =>{
 		url:`${pageContext.request.contextPath}/board/boardDelete/\${no}`,
 		method:"delete",
 	})
-	.done(data=>{
+	.done(data => {
 		console.log(data)
-		if(data>0){
+		if(data > 0){
 			location.href=`${pageContext.request.contextPath}/board/boardList`;
 		}
 	})
@@ -47,10 +43,14 @@ const boardDetail = () => {
 						<p>작성자 \${memberId}</p>
 						<p>작성일 \${regDate}</p>
 						<h3>내용</h3>
-						<p>\${content}</p>
-						<button type="button" class="btn btn-primary" onClick="boardUpdate(\${no});">수정</button>
-						<button type="button" class="btn btn-danger" onClick="boardDelete(\${no});">삭제</button>
-						`;
+						<p>\${content}</p>`;
+		//const loginId = ${principal};
+						
+		if(memberId == "${principal.id}") {
+			html +=	`<button type="button" class="btn btn-primary" onClick="boardUpdate(\${no});">수정</button>
+				<button type="button" class="btn btn-danger" onClick="boardDelete(\${no});">삭제</button>`;
+		};
+				
 		$("#board-datail").html(html);
 	})
 	.fail(console.log)
