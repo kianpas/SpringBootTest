@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		log.debug("security config {}");
 		http.csrf().disable().headers().and().authorizeRequests().antMatchers("/login", "/").permitAll()
-				.antMatchers("/board/**").hasAnyRole("ADMIN", "USER");
+				.antMatchers("/board/**", "/member/**").hasAnyRole("ADMIN", "USER");
 		http.formLogin().loginProcessingUrl("/login").permitAll().and().logout().permitAll().logoutUrl("/logout")
 				.logoutSuccessUrl("/");
 

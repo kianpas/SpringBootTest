@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>SpringBoot Test</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -104,7 +104,7 @@
 	
 	
 	$("#user-link").on("click", ()=>{
-		location.href="${pageContext.request.contextPath}/member/memberDetail";
+		location.href="${pageContext.request.contextPath}/member/profile";
 	})
 
 	

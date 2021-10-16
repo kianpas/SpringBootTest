@@ -20,7 +20,7 @@ public class MemberController {
 
 	}
 
-	@GetMapping("/memberDetail")
+	@GetMapping("/profile")
 	public String memberDetail(Authentication authentication, Model model) {
 		try {
 			// 1. SecurityContextHolder로 부터 가져오기
@@ -28,7 +28,7 @@ public class MemberController {
 			model.addAttribute("loginMember", principal);
 			log.debug("authentication = {}", authentication);
 			log.debug("principal = {}", principal);
-			return "member/memberDetail";
+			return "member/profile";
 		} catch (Exception e) {
 			throw e;
 		}
