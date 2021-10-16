@@ -6,7 +6,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <h1>Profile</h1>
 <sec:authentication property="principal" var="principal" />
-<div class="container rounded bg-white mt-5 mb-5">
+<div class="container rounded bg-white mt-3 mb-5">
 	<div class="row">
 		<div class="col-md-3 border-right">
 			<div
@@ -64,8 +64,6 @@
 						<label class="labels">Area</label><input type="text"
 							class="form-control" placeholder="enter address line 2" value="">
 					</div>
-
-
 				</div>
 				<div class="row mt-3">
 					<div class="col-md-6">
@@ -78,7 +76,7 @@
 					</div>
 				</div>
 				<div class="mt-5 text-center">
-					<button class="btn btn-primary profile-button" type="button">Save
+					<button class="btn btn-primary profile-button" type="button">Edit
 						Profile</button>
 				</div>
 			</div>

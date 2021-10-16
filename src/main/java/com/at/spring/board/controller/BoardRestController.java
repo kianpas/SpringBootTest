@@ -1,6 +1,8 @@
 package com.at.spring.board.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -56,11 +58,16 @@ public class BoardRestController {
 	}
 
 	@PostMapping("/boardEnroll")
-	public String boardEnroll(@ModelAttribute Board board) {
+	public Map<String, Object> boardEnroll(@ModelAttribute Board board) {
 		try {
 			log.debug("board {}", board);
 			int result = boardService.insertBoard(board);
-			return "redirect:/board/boardDetail?no=" + board.getNo();
+			int boardNo = board.getNo();
+			log.debug("enroll boardNo {}", boardNo);
+			Map<String, Object> map = new HashMap<>();
+			map.put("result", result);
+			map.put("boardNo", boardNo);
+			return map;
 		} catch (Exception e) {
 			throw e;
 		}
