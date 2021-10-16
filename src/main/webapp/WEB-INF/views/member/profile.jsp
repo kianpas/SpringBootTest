@@ -25,27 +25,27 @@
 				<div class="row mt-3">
 					<div class="col-md-12">
 						<label class="labels">이름</label><input type="text"
-							class="form-control" placeholder="first name"
+							class="form-control" placeholder="이름"
 							value="${principal.name}">
 					</div>
 				</div>
 				<div class="row mt-3">
 					<div class="col-md-12">
 						<label class="labels">전화번호</label><input type="text"
-							class="form-control" placeholder="enter phone number" value="">
+							class="form-control" placeholder="전화번호" value="">
 					</div>
 					<div class="col-md-12">
 						<label class="labels">E-Mail</label><input type="text"
-							class="form-control" placeholder="enter address line 1"
+							class="form-control" placeholder="E-Mail"
 							value="${principal.email}">
 					</div>
 					<div class="col-md-12">
 						<label class="labels">생년월일</label><input type="text"
-							class="form-control" placeholder="" value="${principal.birthday}">
+							class="form-control" placeholder="생년월일" value="${principal.birthday}">
 					</div>
 					<div class="col-md-12">
-						<label class="labels">Address</label><input type="text"
-							class="form-control" placeholder="enter address line 2"
+						<label class="labels">주소</label><input type="text"
+							class="form-control" placeholder="주소"
 							value="${principal.address}">
 					</div>
 					<div class="col-md-12">
