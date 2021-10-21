@@ -40,22 +40,17 @@
 		<!-- <div class="header_toggle">
 			<i class='bx bx-menu' id="header-toggle"></i>
 		</div> -->
-		<sec:authorize access="isAnonymous()">
-			<form:form action="${pageContext.request.contextPath}/login"
-				method="post">
-				<button>로그인</button>
-			</form:form>
-		</sec:authorize>
+		
 		<sec:authorize access="isAuthenticated()">
 			<sec:authentication property="principal" var="principal" />
-			<p>${principal.id}</p>
+			<p>${principal.name} 님</p>
 			<div class="header_img">
 				<img src="https://i.imgur.com/hczKIze.jpg" alt="">
 			</div>
-			<form:form action="${pageContext.request.contextPath}/logout"
+			<%-- <form:form action="${pageContext.request.contextPath}/logout"
 				method="post">
 				<button>로그아웃</button>
-			</form:form>
+			</form:form> --%>
 		</sec:authorize>
 	</header>
 	<div class="l-navbar show" id="nav-bar">
@@ -87,27 +82,55 @@
 					</ul>
 				</div>
 			</div>
-			<a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i>
-				<span class="nav_name">SignOut</span>
-			</a>
+			<sec:authorize access="isAnonymous()">
+			<form:form action="${pageContext.request.contextPath}/login"
+				method="post" id="login">
+				<ul style="padding-left: 0px;">
+						<li class="nav_link" id="login-link"> <i class='bx bx-log-in nav_icon' ></i>
+							<span class="nav_name">Sign In</span>
+						</li>
+					</ul>
+			</form:form>
+		</sec:authorize>
+			<sec:authorize access="isAuthenticated()">
+				<sec:authentication property="principal" var="principal" />
+				<form:form action="${pageContext.request.contextPath}/logout"
+					method="post" id="logout">
+					<ul style="padding-left: 0px;">
+						<li class="nav_link" id="logout-link"> <i class='bx bx-log-out nav_icon'></i>
+							<span class="nav_name">Sign Out</span>
+						</li>
+					</ul>
+				</form:form>
+			</sec:authorize>
 		</nav>
 	</div>
 	<script>
+	//대시보드, 인덱스
 	$("#index-link").on("click", (event)=>{
 		//event.preventDefault();
 		location.href="${pageContext.request.contextPath}";
 	})
 	
+	//게시판
 	$("#board-link").on("click", ()=>{
 		location.href="${pageContext.request.contextPath}/board/boardList";
 	})
 	
-	
+	//프로필
 	$("#user-link").on("click", ()=>{
 		location.href="${pageContext.request.contextPath}/member/profile";
 	})
-
 	
+	//로그인
+	$("#login-link").on("click", ()=>{
+		$("#login").submit();
+	})	
+	
+	//로그아웃
+	$("#logout-link").on("click", ()=>{
+		$("#logout").submit();
+	})	
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
