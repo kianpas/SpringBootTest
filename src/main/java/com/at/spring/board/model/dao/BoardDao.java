@@ -16,4 +16,6 @@ public interface BoardDao {
 
 	int deleteBoard(int no);
 
+	List<Board> indexBoardList();
+
 }

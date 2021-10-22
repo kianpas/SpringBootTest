@@ -43,6 +43,19 @@ public class BoardRestController {
 		}
 
 	}
+	
+	@GetMapping("/indexBoardList")
+	public List<Board> indexBoardList() {
+		try {
+			List<Board> indexBoardList = boardService.indexBoardList();
+			// log.debug("boardList {}", boardList);
+
+			return indexBoardList;
+		} catch (Exception e) {
+			throw e;
+		}
+
+	}
 
 	@GetMapping("/boardDetail/{no}")
 	public Board boardDetail(@PathVariable int no) {

@@ -40,10 +40,10 @@
 		<!-- <div class="header_toggle">
 			<i class='bx bx-menu' id="header-toggle"></i>
 		</div> -->
-		
+
 		<sec:authorize access="isAuthenticated()">
 			<sec:authentication property="principal" var="principal" />
-			<p>${principal.name} 님</p>
+			<p>${principal.name}님</p>
 			<div class="header_img">
 				<img src="https://i.imgur.com/hczKIze.jpg" alt="">
 			</div>
@@ -56,9 +56,10 @@
 	<div class="l-navbar show" id="nav-bar">
 		<nav class="nav">
 			<div>
-				<a href="#" class="nav_logo"> <i
-					class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">BBBootstrap</span>
-				</a>
+				<div class="nav_logo" id="logo">
+					<i class='bx bx-layer nav_logo-icon'></i> <span
+						class="nav_logo-name">BBBootstrap</span>
+				</div>
 				<div class="nav_list">
 					<ul style="padding-left: 0px;">
 						<li class="nav_link" id="index-link"><i
@@ -82,33 +83,33 @@
 					</ul>
 				</div>
 			</div>
-			<sec:authorize access="isAnonymous()">
-			<form:form action="${pageContext.request.contextPath}/login"
-				method="post" id="login">
-				<ul style="padding-left: 0px;">
-						<li class="nav_link" id="login-link"> <i class='bx bx-log-in nav_icon' ></i>
-							<span class="nav_name">Sign In</span>
-						</li>
-					</ul>
-			</form:form>
-		</sec:authorize>
-			<sec:authorize access="isAuthenticated()">
-				<sec:authentication property="principal" var="principal" />
-				<form:form action="${pageContext.request.contextPath}/logout"
-					method="post" id="logout">
-					<ul style="padding-left: 0px;">
-						<li class="nav_link" id="logout-link"> <i class='bx bx-log-out nav_icon'></i>
-							<span class="nav_name">Sign Out</span>
-						</li>
-					</ul>
-				</form:form>
-			</sec:authorize>
+			<ul style="padding-left: 0px;">
+				<sec:authorize access="isAnonymous()">
+					<li class="nav_link" id="login-link"><i
+						class='bx bx-log-in nav_icon'></i> <span class="nav_name">Sign
+							In</span></li>
+				</sec:authorize>
+				<sec:authorize access="isAuthenticated()">
+					<sec:authentication property="principal" var="principal" />
+					<form:form action="${pageContext.request.contextPath}/logout"
+						method="post" id="logout">
+
+						<li class="nav_link" id="logout-link"><i
+							class='bx bx-log-out nav_icon'></i> <span class="nav_name">Sign
+								Out</span></li>
+					</form:form>
+				</sec:authorize>
+			</ul>
+
 		</nav>
 	</div>
 	<script>
 	//대시보드, 인덱스
 	$("#index-link").on("click", (event)=>{
-		//event.preventDefault();
+		location.href="${pageContext.request.contextPath}";
+	})
+	
+	$("#logo").on("click", (event)=>{
 		location.href="${pageContext.request.contextPath}";
 	})
 	
@@ -124,7 +125,8 @@
 	
 	//로그인
 	$("#login-link").on("click", ()=>{
-		$("#login").submit();
+		//$("#login").submit();
+		location.href="${pageContext.request.contextPath}/member/login";
 	})	
 	
 	//로그아웃

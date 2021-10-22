@@ -16,4 +16,6 @@ public interface BoardService {
 
 	int deleteBoard(int no);
 
+	List<Board> indexBoardList();
+
 }

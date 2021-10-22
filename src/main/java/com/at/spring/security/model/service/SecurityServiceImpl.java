@@ -20,6 +20,7 @@ public class SecurityServiceImpl implements SecurityService {
 
 	@Override
 	public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
+		log.debug("id = {}", id);
 		UserDetails member = securityDao.loadUserByUsername(id);
 		log.debug("member = {}", member);
 		if(member == null) {

@@ -20,10 +20,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		log.debug("security config {}");
-		http.csrf().disable().headers().and().authorizeRequests().antMatchers("/login", "/").permitAll()
-				.antMatchers("/board/**", "/member/**").hasAnyRole("ADMIN", "USER");
-		http.formLogin().loginProcessingUrl("/login").permitAll().and().logout().permitAll().logoutUrl("/logout")
-				.logoutSuccessUrl("/");
+		http.csrf().disable().headers().and().authorizeRequests().antMatchers("/member/login","/member/loginProcess", "/").permitAll()
+				.antMatchers("/board/**", "/member/profile").hasAnyRole("ADMIN", "USER")
+		.and().formLogin()
+				.loginPage("/member/login").loginProcessingUrl("/member/loginProcess").defaultSuccessUrl("/").permitAll().and()
+				.logout().permitAll().logoutUrl("/logout").logoutSuccessUrl("/");
 
 	}
 
