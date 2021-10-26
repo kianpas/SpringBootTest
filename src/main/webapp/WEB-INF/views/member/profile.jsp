@@ -55,11 +55,6 @@
 								class="form-control" placeholder="주소"
 								value="${principal.address}">
 						</div>
-						<div class="col-md-12">
-							<label class="labels">주소2</label><input type="text"
-								class="form-control" placeholder="주소"
-								value="${principal.address}">
-						</div>
 					</div>
 					<div class="row mt-3">
 						<div class="col-md-12">
@@ -68,7 +63,7 @@
 								<span>${hobby}</span>
 							</c:forEach>
 							<input type="text" class="form-control"
-								placeholder="enter address line 2" value="">
+								placeholder="취미" value="">
 						</div>
 					</div>
 				
@@ -120,8 +115,7 @@
 		</div>
 	</div>
 </div>
-<h3>${principal.gender}</h3>
-<h3>${principal.enrollDate}</h3>
+
 
 
 

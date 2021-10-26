@@ -20,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		log.debug("security config {}");
-		http.csrf().disable().headers().and().authorizeRequests().antMatchers("/member/login","/member/loginProcess", "/").permitAll()
+		http.csrf().disable().headers().and().authorizeRequests().antMatchers("/", "/member/login","/member/loginProcess", "/member/signUp").permitAll()
 				.antMatchers("/board/**", "/member/profile").hasAnyRole("ADMIN", "USER")
 		.and().formLogin()
 				.loginPage("/member/login").loginProcessingUrl("/member/loginProcess").defaultSuccessUrl("/").permitAll().and()

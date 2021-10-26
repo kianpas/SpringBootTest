@@ -39,6 +39,7 @@
 					<div class="mt-5 text-center">
 						<button class="btn btn-primary profile-button" type="submit">Login</button>
 					</div>
+					<a href="${pageContext.request.contextPath}/member/signUp">Sign Up</a>
 				</div>
 			</form:form>
 		</div>

@@ -19,6 +19,11 @@ public class MemberController {
 	public void memberLogin() {
 			
 	}
+	
+	@GetMapping("/signUp")
+	public void memberSignUp() {
+			
+	}
 
 	@GetMapping("/profile")
 	public String memberDetail(Authentication authentication, Model model) {
