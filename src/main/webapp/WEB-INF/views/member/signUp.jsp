@@ -67,15 +67,15 @@
 						<div class="row mt-3">
 							<div class="col-md-12">
 								<label class="labels">생년월일</label><input type="date"
-									class="form-control" placeholder="생년월일"
-									value="${principal.birthday}">
+									class="form-control" placeholder="생년월일" name="birthday"
+									>
 							</div>
 						</div>
 						<div class="row mt-3">
 							<div class="col-md-12">
 								<label class="labels">주소</label><input type="text"
 									class="form-control" placeholder="주소" name="address"
-									value="${principal.address}">
+									>
 							</div>
 						</div>
 						<div class="row mt-3">
@@ -94,18 +94,19 @@
 							</div>
 						</div>
 					</div>
+					<div class="mt-5 text-center">
+						<button class="btn btn-primary profile-button" type="submit" 
+							>Sign Up</button>
+					</div>
 				</form>
-				<div class="mt-5 text-center">
-					<button class="btn btn-primary profile-button" type="button"
-						onClick="memberSignUp()">Sign Up</button>
-				</div>
 			</div>
 		</div>
 	</div>
 </div>
 <script>
-const memberSignUp =()=>{
-	const $signUpForm = $("#signUpForm");
+$("#signUpForm").submit(event => {
+	event.preventDefault();
+	const $signUpForm = $(event.target);
 	const id = $signUpForm.find("[name=id]").val();
 	const password = $signUpForm.find("[name=password]").val();
 	const name = $signUpForm.find("[name=name]").val();
@@ -115,17 +116,29 @@ const memberSignUp =()=>{
 	const phone = $signUpForm.find("[name=phone]").val();
 	const address = $signUpForm.find("[name=address]").val();
 	let hobby=[];
-	const hobbyFn = $signUpForm.find("[name=hobby]").attr('selected','selected');
+	const hobbyFn = $signUpForm.find("[name=hobby]:checked");
 	
 	hobbyFn.map((index, item)=>{
 		console.log($(item).val())
 		hobby.push($(item).val())
 	});
 	
-	console.log(gender)
-	console.log(hobby)
-	
-}
+	console.log(gender);
+	console.log(hobby);
 
+	const member = {id, password, name, gender, birthday, email, phone, address, hobby};
+
+	console.log(member);
+	/* $.ajax({
+		url:"${pageContext.request.contextPath}/member/memberSignUp",
+		method:"POST",
+		data:member,
+		contentType:"application/json; charset=utf-8"
+	}).done(data=>{
+
+	}).fail();
+	 */
+	
+})
 </script>
 </body>
