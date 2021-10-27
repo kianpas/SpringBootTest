@@ -42,6 +42,8 @@ public class MemberController {
 		}
 	}
 	
+	
+	
 	@GetMapping("/checkDuplicate")
 	public Map<String, Object> checkDuplicate(){
 		

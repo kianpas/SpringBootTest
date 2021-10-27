@@ -129,15 +129,18 @@ $("#signUpForm").submit(event => {
 	const member = {id, password, name, gender, birthday, email, phone, address, hobby};
 
 	console.log(member);
-	/* $.ajax({
-		url:"${pageContext.request.contextPath}/member/memberSignUp",
+	 $.ajax({
+		url:"${pageContext.request.contextPath}/member/insertMember",
 		method:"POST",
-		data:member,
+		data:JSON.stringify(member),
 		contentType:"application/json; charset=utf-8"
 	}).done(data=>{
-
+		console.log(data)
+		if(data > 0){
+			location.href="${pageContext.request.contextPath}";
+		}
 	}).fail();
-	 */
+	 
 	
 })
 </script>

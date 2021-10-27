@@ -21,6 +21,15 @@
 		)
 		<!-- enroll_date, enable컬럼은 기본값처리 -->
 	</insert>
+	
+	<insert id="insertRole">
+		insert into
+			authority
+		values(
+			#{id},
+			'ROLE_USER'
+		)
+	</insert>
 	<select id="selectOneMember" resultMap="memberVoMap">
 		select *
 		from member
