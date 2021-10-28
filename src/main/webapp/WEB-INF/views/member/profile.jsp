@@ -20,101 +20,105 @@
 		<div class="col-md-5 border-right">
 			<div class="p-3 py-5">
 				<div class="d-flex justify-content-between align-items-center mb-3">
-					<h4 class="text-right">Profile Settings</h4>
+					<h4 class="text-right">Profile</h4>
 				</div>
-				<div class="row mt-3">
+				<form id="editForm">
 					<div class="row mt-3">
-						<div class="col-md-12">
-							<label class="labels">이름</label><input type="text"
-								class="form-control" placeholder="이름" value="${principal.name}">
+						<div class="row mt-3">
+							<div class="col-md-12">
+								<label class="labels">이름</label><input type="text"
+									class="form-control" placeholder="이름" value="${principal.name}" id="name">
+							</div>
+						</div>
+						<div class="row mt-3">
+							<div class="col-md-12">
+								<label class="labels">전화번호</label><input type="text"
+									class="form-control" placeholder="전화번호"
+									value="${principal.phone}" id="phone">
+							</div>
+						</div>
+						<div class="row mt-3">
+							<div class="col-md-12">
+								<label class="labels">E-Mail</label><input type="text"
+									class="form-control" placeholder="E-Mail"
+									value="${principal.email}" id="email">
+							</div>
+						</div>
+						<div class="row mt-3">
+							<div class="col-md-12">
+								<label class="labels">생년월일</label><input type="text"
+									class="form-control" placeholder="생년월일"
+									value="${principal.birthday}" id="birthday">
+							</div>
+						</div>
+						<div class="row mt-3">
+							<div class="col-md-12">
+								<label class="labels">주소</label><input type="text"
+									class="form-control" placeholder="주소"
+									value="${principal.address}" id="address">
+							</div>
+						</div>
+						<div class="row mt-3">
+							<div class="col-md-12">
+								<label class="labels">취미</label>
+								<c:forEach var="hobby" items="${principal.hobby}">
+									<span></span>
+									<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="${hobby}"
+										id="flexCheckChecked" name="hobby"> <label
+										class="form-check-label" for="flexCheckChecked">${hobby}</label>
+								</div>
+								</c:forEach>
+							</div>
+						</div>
+						<div class="mt-5 text-center">
+							<button class="btn btn-primary profile-button" type="button"
+								id="editBtn">Edit Profile</button>
 						</div>
 					</div>
-					<div class="row mt-3">
-						<div class="col-md-12">
-							<label class="labels">전화번호</label><input type="text"
-								class="form-control" placeholder="전화번호" value="">
-						</div>
-					</div>
-					<div class="row mt-3">
-						<div class="col-md-12">
-							<label class="labels">E-Mail</label><input type="text"
-								class="form-control" placeholder="E-Mail"
-								value="${principal.email}">
-						</div>
-					</div>
-					<div class="row mt-3">
-						<div class="col-md-12">
-							<label class="labels">생년월일</label><input type="text"
-								class="form-control" placeholder="생년월일"
-								value="${principal.birthday}">
-						</div>
-					</div>
-					<div class="row mt-3">
-						<div class="col-md-12">
-							<label class="labels">주소</label><input type="text"
-								class="form-control" placeholder="주소"
-								value="${principal.address}">
-						</div>
-					</div>
-					<div class="row mt-3">
-						<div class="col-md-12">
-							<label class="labels">취미</label>
-							<c:forEach var="hobby" items="${principal.hobby}">
-								<span>${hobby}</span>
-							</c:forEach>
-							<input type="text" class="form-control"
-								placeholder="취미" value="">
-						</div>
-					</div>
-				
-				</div>
-					
-				<!-- <div class="col-md-12">
-						<label class="labels">State</label><input type="text"
-							class="form-control" placeholder="enter address line 2" value="">
-					</div>
-					<div class="col-md-12">
-						<label class="labels">Area</label><input type="text"
-							class="form-control" placeholder="enter address line 2" value="">
-					</div>
-					<div class="row mt-3">
-					<div class="col-md-6">
-						<label class="labels">Country</label><input type="text"
-							class="form-control" placeholder="country" value="">
-					</div>
-					<div class="col-md-6">
-						<label class="labels">State/Region</label><input type="text"
-							class="form-control" value="" placeholder="state">
-					</div>
-				</div> -->
-				<div class="mt-5 text-center">
-					<button class="btn btn-primary profile-button" type="button">Edit
-						Profile</button>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="p-3 py-5">
-				<div
-					class="d-flex justify-content-between align-items-center experience">
-					<span>Edit Experience</span><span
-						class="border px-3 p-1 add-experience"><i
-						class="fa fa-plus"></i>&nbsp;Experience</span>
-				</div>
-				<br>
-				<div class="col-md-12">
-					<label class="labels">Experience in Designing</label><input
-						type="text" class="form-control" placeholder="experience" value="">
-				</div>
-				<br>
-				<div class="col-md-12">
-					<label class="labels">Additional Details</label><input type="text"
-						class="form-control" placeholder="additional details" value="">
-				</div>
+				</form>
 			</div>
 		</div>
 	</div>
 </div>
+<script>
+$("#editBtn").click((event) => {
+	const $editForm = $(event.target);
+	const id = $("#id").val();
+	const password = $("#password").val();
+	const name = $("#name").val();
+	const gender = $("#gender").val();
+	const birthday = $("#birthday").val();
+	const email = $("#email").val();
+	const phone = $("#phone").val();
+	const address = $("#address").val();
+	let hobby=[];
+	const hobbyFn = $("[name=hobby]:checked");
+	
+	
+	hobbyFn.map((index, item)=>{
+		console.log($(item).val())
+		hobby.push($(item).val())
+	});
+	
+	console.log(gender);
+	console.log(hobby);
+
+	const member = {id, password, name, gender, birthday, email, phone, address, hobby};
+	
+	 $.ajax({
+			url:"${pageContext.request.contextPath}/member/updateMember",
+			method:"PUT",
+			data:JSON.stringify(member),
+			contentType:"application/json; charset=utf-8"
+		}).done(data=>{
+			console.log(data)
+			if(data > 0){
+				location.href="${pageContext.request.contextPath}/member/profile";
+			}
+		}).fail(console.log);
+})
+</script>
 
 
 

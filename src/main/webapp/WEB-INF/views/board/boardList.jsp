@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <div>
 	<h1>Board</h1>
 	<div class="row">
 		<div class="col offset-md-10">
-			<button type="button" class="btn btn-primary" onClick="boardForm();">작성</button>
+			<sec:authorize access="isAuthenticated()">
+				<button type="button" class="btn btn-primary" onClick="boardForm();">작성</button>
+			</sec:authorize>
 		</div>
 	</div>
-	<!-- <div class="col align-self-end">
-		<button type="button" class="btn btn-primary" onClick="boardForm();">작성</button>
-	</div> -->
 	<table class="table table-hover" id="boardList">
 	</table>
 </div>

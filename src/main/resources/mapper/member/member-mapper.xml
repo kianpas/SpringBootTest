@@ -35,6 +35,11 @@
 		from member
 		where id = #{id}
 	</select>
+	<select id="idCheckDuplicate" resultMap="memberVoMap">
+		select *
+		from member
+		where id = #{id}
+	</select>
 	<update id="updateMember">
 		update 
 			member

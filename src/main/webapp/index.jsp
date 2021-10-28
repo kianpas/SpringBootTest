@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
-
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+<sec:authentication property="principal" var="principal" />
 <h1>DashBoard</h1>
 <div class="row">
 	<div class="col-md-5">
@@ -38,12 +40,13 @@ html += `<tr data-no="\${no}" onclick="boardView();">
 			</tr>`;
 });
 $container.html(html);
-	}).fail(console.log)
-}
+	}).fail(console.log);
+};
+
 
 $(function(){
 	indexBoardList();
-})
+});
 </script>
 </body>
 </html>

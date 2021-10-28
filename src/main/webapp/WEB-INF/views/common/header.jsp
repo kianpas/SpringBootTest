@@ -58,7 +58,7 @@
 			<div>
 				<div class="nav_logo" id="logo">
 					<i class='bx bx-layer nav_logo-icon'></i> <span
-						class="nav_logo-name">BBBootstrap</span>
+						class="nav_logo-name">SpringBootTest</span>
 				</div>
 				<div class="nav_list">
 					<ul style="padding-left: 0px;">

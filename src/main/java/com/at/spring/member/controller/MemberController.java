@@ -1,7 +1,5 @@
 package com.at.spring.member.controller;
 
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -42,12 +40,6 @@ public class MemberController {
 		}
 	}
 	
-	
-	
-	@GetMapping("/checkDuplicate")
-	public Map<String, Object> checkDuplicate(){
 		
-		Map<String, Object> map = new HashMap<>();
-		return map;
-	}
+	
 }

@@ -8,4 +8,8 @@ public interface MemberDao {
 
 	int insertRole(String id);
 
+	Member idCheckDuplicate(String id);
+
+	int updateMember(Member member);
+
 }

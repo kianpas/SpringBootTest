@@ -8,27 +8,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/board")
 public class BoardController {
 
+	
 	@GetMapping("/boardList")
-	public String boardList() {
-
-		return "board/boardList";
+	public void boardList() {
+	
 	}
-
+	
 	@GetMapping("/boardForm")
-	public String boardForm() {
+	public void boardForm() {
 
-		return "board/boardForm";
 	}
-
+	
 	@GetMapping("/boardView/{no}")
-	public String boardDetail() {
-
-		return "board/boardView";
+	public String boardView() {
+		
+		return "/board/boardView";
 	}
-
+	
 	@GetMapping("/boardUpdate/{no}")
 	public String boardUpdate() {
 
-		return "board/boardUpdate";
+		return "/board/boardUpdate";
 	}
+
 }
+	
+
+
+	

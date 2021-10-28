@@ -22,6 +22,8 @@
 							<div class="col-md-12">
 								<label class="labels">아이디</label><input type="text"
 									class="form-control" placeholder="아이디" value="" name="id">
+								<button class="btn btn-primary profile-button" type="button"
+									id="checkBtn">중복 체크</button>
 							</div>
 						</div>
 						<div class="row mt-3">
@@ -67,15 +69,13 @@
 						<div class="row mt-3">
 							<div class="col-md-12">
 								<label class="labels">생년월일</label><input type="date"
-									class="form-control" placeholder="생년월일" name="birthday"
-									>
+									class="form-control" placeholder="생년월일" name="birthday">
 							</div>
 						</div>
 						<div class="row mt-3">
 							<div class="col-md-12">
 								<label class="labels">주소</label><input type="text"
-									class="form-control" placeholder="주소" name="address"
-									>
+									class="form-control" placeholder="주소" name="address">
 							</div>
 						</div>
 						<div class="row mt-3">
@@ -95,8 +95,8 @@
 						</div>
 					</div>
 					<div class="mt-5 text-center">
-						<button class="btn btn-primary profile-button" type="submit" 
-							>Sign Up</button>
+						<button class="btn btn-primary profile-button" type="submit">Sign
+							Up</button>
 					</div>
 				</form>
 			</div>
@@ -105,7 +105,7 @@
 </div>
 <script>
 $("#signUpForm").submit(event => {
-	event.preventDefault();
+	//event.preventDefault();
 	const $signUpForm = $(event.target);
 	const id = $signUpForm.find("[name=id]").val();
 	const password = $signUpForm.find("[name=password]").val();
@@ -139,9 +139,24 @@ $("#signUpForm").submit(event => {
 		if(data > 0){
 			location.href="${pageContext.request.contextPath}";
 		}
-	}).fail();
-	 
+	}).fail(console.log);
 	
+})
+
+
+$("#checkBtn").click(() => {
+	const id = $("[name=id]").val();
+	console.log(id)
+	 $.ajax({
+		url:"${pageContext.request.contextPath}/member/idCheckDuplicate",
+		method:"GET",
+		data:{id},
+		contentType:"application/json; charset=utf-8"
+	}).done(data => {
+		console.log(data)
+		data.available ? alert(`\${data.id}는 사용가능한 아이디입니다.`) 
+					   : alert(`\${data.id}는 사용불가능한 아이디입니다.`)
+	}).fail(console.log);
 })
 </script>
 </body>
