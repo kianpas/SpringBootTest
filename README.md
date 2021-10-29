@@ -3,7 +3,7 @@
 ![Build Status](https://img.shields.io/github/last-commit/kianpas/SpringBootTest)
 
 ## 프로젝트 개요
-
+스프링 공부
 
 ## 개발 기간
 
@@ -16,12 +16,13 @@ Eclipse, SQL Developer
 
 ## 주요 기능
  1. 메인
-    * 
-    * 
-    * 
+    - 최근 게시글 조회
+    - 로그인
+    -
  2. 회원
-    * 
- 4. 관리자
-    * 
+    - 정보 수정
+    - 게시글 조회, 작성, 수정, 삭제
+ 3. 관리자
+
    
     
