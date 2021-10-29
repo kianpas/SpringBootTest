@@ -1,9 +1,19 @@
 package com.at.spring.member.controller;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,6 +39,9 @@ public class MemberRestController {
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 
+	@Autowired
+	AuthenticationManager authenticationManager;
+
 	@PostMapping("/insertMember")
 	public int insertMember(@RequestBody Member member) {
 
@@ -48,17 +61,36 @@ public class MemberRestController {
 	}
 
 	@PutMapping("/updateMember")
-	public int updateMember(@RequestBody Member member) {
+	public int updateMember(@RequestBody Member member, Authentication authentication) {
 		log.debug("member = {}", member);
-
-		/*
-		 * String rawPassword = member.getPassword(); String encodedPassword =
-		 * bCryptPasswordEncoder.encode(rawPassword);
-		 * member.setPassword(encodedPassword);
-		 */
 
 		int result = memberService.updateMember(member);
 		
+		//시큐리티의 비밀번호 지정
+		member.setPassword(((Member) authentication.getPrincipal()).getPassword());
+		
+		//시큐리티의 권한 가져오기
+		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+
+		//새로운 권한 리스트 생성
+		List<SimpleGrantedAuthority> newAuthorites = new ArrayList<>();
+
+		//새로운 권한 리스트에 시큐리티의 권한 입력
+		for (GrantedAuthority auth : authorities) {
+			SimpleGrantedAuthority simpleAuth = new SimpleGrantedAuthority(auth.getAuthority());
+			newAuthorites.add(simpleAuth);
+		}
+		
+		//회원의 권한에 지정
+		member.setAuthorities(newAuthorites);
+
+		
+		//새로운 인증 정보 생성, 업데이트된 멤버정보와 기존 인증 정보가져옴
+		Authentication newAuth = new UsernamePasswordAuthenticationToken(member, authentication.getCredentials(),
+				authentication.getAuthorities());
+
+		SecurityContextHolder.getContext().setAuthentication(newAuth);
+
 		return result;
 	}
 

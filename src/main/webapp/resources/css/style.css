@@ -55,6 +55,10 @@ a:hover{
     transition: .5s
 }
 
+.header p {
+	margin : 10px;
+}
+
 .header_toggle {
     color: var(--first-color);
     font-size: 1.5rem;

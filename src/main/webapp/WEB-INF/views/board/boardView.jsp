@@ -3,11 +3,16 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
-<div>
-	<sec:authentication property="principal" var="principal" />
-	<div id="board-datail"></div>
-</div>
+
+<sec:authentication property="principal" var="principal" />
+<div id="board-datail"></div>
+
 <script>
+const boardList = () =>{
+	location.href=`${pageContext.request.contextPath}/board/boardList`;
+};
+
+
 const boardUpdate = (no) =>{
 	location.href=`${pageContext.request.contextPath}/board/boardUpdate/\${no}`;
 };
@@ -39,13 +44,43 @@ const boardDetail = () => {
 	.done(board => {
 		console.log(board);
 		const {no, title, memberId, content, regDate, readCount} = board;
-		let html = `<h2>\${no}  \${title}</h2>
-						<p>작성자 \${memberId}</p>
-						<p>작성일 \${regDate}</p>
-						<h3>내용</h3>
-						<p>\${content}</p>`;
-		//const loginId = ${principal};
-						
+		let html = `<div class="col-md-12 border-right">
+						<div class="p-3 py-5">
+							<div class="d-flex justify-content-between align-items-center mb-3">
+								<h4 class="text-right">게시글</h4>
+							</div>
+							<div class="row mt-3">
+								<div class="col-md-12">
+									<label class="labels">제목</label>
+									<h2>\${no}  \${title}</h2>
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class="col-md-12">
+									<label class="labels">아이디</label>
+									<p>\${memberId}</p>
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class="col-md-12">
+									<label class="labels">작성일</label>
+									<p>\${regDate}</p>
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class="col-md-12">
+									<label for="exampleFormControlTextarea2" class="labels">내용</label>
+									<textarea class="form-control" id="exampleFormControlTextarea2"
+										name="content" rows="3">\${content}</textarea>
+								</div>
+							</div>
+							<div class="mt-5 text-center">
+								<button class="btn btn-primary profile-button" type="button"
+									onclick="boardList();">목록</button>
+							</div>
+						</div>
+					</div>`;
+		
 		if(memberId == "${principal.id}") {
 			html +=	`<button type="button" class="btn btn-primary" onClick="boardUpdate(\${no});">수정</button>
 				<button type="button" class="btn btn-danger" onClick="boardDelete(\${no});">삭제</button>`;

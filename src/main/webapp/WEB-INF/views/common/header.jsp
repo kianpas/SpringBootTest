@@ -47,10 +47,6 @@
 			<div class="header_img">
 				<img src="https://i.imgur.com/hczKIze.jpg" alt="">
 			</div>
-			<%-- <form:form action="${pageContext.request.contextPath}/logout"
-				method="post">
-				<button>로그아웃</button>
-			</form:form> --%>
 		</sec:authorize>
 	</header>
 	<div class="l-navbar show" id="nav-bar">

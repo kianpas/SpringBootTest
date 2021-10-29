@@ -91,6 +91,11 @@
 										id="flexCheckChecked" name="hobby"> <label
 										class="form-check-label" for="flexCheckChecked">음악</label>
 								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="음악"
+										id="flexCheckChecked" name="hobby"> <label
+										class="form-check-label" for="flexCheckChecked">여행</label>
+								</div>
 							</div>
 						</div>
 					</div>
