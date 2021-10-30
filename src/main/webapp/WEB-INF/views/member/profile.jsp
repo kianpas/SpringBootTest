@@ -66,28 +66,28 @@
 						</div>
 					</div>
 					<div class="row mt-3">
-						<div class="col-md-12">
+						<div class="col-md-12" id="hobbyBtn">
 							<label class="labels">취미</label>
-							<c:forEach var="hobby" items="${principal.hobby}">
-								<div class="form-check">
-									<input class="form-check-input" type="checkbox" value="운동"
-										id="flexCheckDefault" name="hobby"
-										${hobby eq "운동" ? "checked": null }> <label
-										class="form-check-label" for="flexCheckDefault">운동</label>
-								</div>
-								<div class="form-check">
-									<input class="form-check-input" type="checkbox" value="음악"
-										id="flexCheckChecked" name="hobby"
-										${hobby eq "음악" ? "checked":null }> <label
-										class="form-check-label" for="flexCheckChecked">음악</label>
-								</div>
-								<div class="form-check">
-									<input class="form-check-input" type="checkbox" value="음악"
-										id="flexCheckChecked" name="hobby"
-										${hobby eq "여행" ? "checked":null }> <label
-										class="form-check-label" for="flexCheckChecked">여행</label>
-								</div>
-							</c:forEach>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="운동"
+									id="exercise" name="hobby"> <label
+									class="form-check-label" for="flexCheckDefault">운동</label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="음악"
+									id="music" name="hobby"> <label
+									class="form-check-label" for="flexCheckChecked">음악</label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="여행"
+									id="tour" name="hobby"> <label class="form-check-label"
+									for="flexCheckChecked">여행</label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="등산"
+									id="hike" name="hobby"> <label class="form-check-label"
+									for="flexCheckChecked">등산</label>
+							</div>
 						</div>
 					</div>
 					<div class="mt-5 text-center">
@@ -101,7 +101,6 @@
 	</div>
 </div>
 <script>
-
 $("#editBtn").click((event) => {
 	const $editForm = $(event.target);
 	const id = '${principal.id}';
@@ -137,7 +136,38 @@ $("#editBtn").click((event) => {
 				location.href="${pageContext.request.contextPath}";
 			}
 		}).fail(console.log);
+});
+let hobbyArr = [];
+<c:forEach var="hobby" items="${principal.hobby}">
+	hobbyArr.push("${hobby}")
+</c:forEach>
+const $chkBox = $("[name=hobby]");
+console.log($chkBox)
+//const result = $chkBox.filter(chk => console.log(chk));
+//console.log(result)
+let chkArr = [];
+$chkBox.map((index, item) => {
+	console.log(item.value)
+ 	chkArr.push(item.value)
+ 	console.log($(item).attr("id"))
+
+ 	if(hobbyArr.includes("운동")){
+		$("#exercise").attr("checked", true)
+ 	 }
+	
+ 	if(hobbyArr.includes("음악")){
+ 		$("#music").attr("checked", true)
+ 	 }
+
+ 	if(hobbyArr.includes("여행")){
+ 		$("#tour").attr("checked", true)
+ 	 }
+
+ 	if(hobbyArr.includes("등산")){
+ 		$("#hike").attr("checked", true)
+ 	 }
 })
+
 </script>
 
 
