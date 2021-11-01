@@ -4,7 +4,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <div>
-	<h1>Board</h1>
+	<h1>게시판</h1>
 	<div class="row">
 		<div class="col offset-md-10">
 			<sec:authorize access="isAuthenticated()">

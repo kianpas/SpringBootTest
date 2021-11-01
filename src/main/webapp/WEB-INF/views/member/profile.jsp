@@ -4,7 +4,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
-<h1>Profile</h1>
+<h1>개인 정보</h1>
 <sec:authentication property="principal" var="principal" />
 <div class="container rounded bg-white mt-3 mb-5">
 	<div class="row">

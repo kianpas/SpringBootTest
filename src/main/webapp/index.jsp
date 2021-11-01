@@ -5,6 +5,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 <sec:authentication property="principal" var="principal" />
 <h1>DashBoard</h1>
+<hr/>
 <div class="row">
 	<div class="col-md-5">
 		<span>최근 작성된 글</span>

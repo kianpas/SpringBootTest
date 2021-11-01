@@ -45,7 +45,16 @@
 			<sec:authentication property="principal" var="principal" />
 			<p>${principal.name}님</p>
 			<div class="header_img">
-				<img src="https://i.imgur.com/hczKIze.jpg" alt="">
+				<a class="dropdown-toggle" href="#" role="button"
+					id="dropdownMenuLink" data-bs-toggle="dropdown"
+					aria-expanded="false"> <img
+					src="https://i.imgur.com/hczKIze.jpg" alt="">
+				</a>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+					<li><a class="dropdown-item" href="#">Action</a></li>
+					<li><a class="dropdown-item" href="#">Another action</a></li>
+					<li><a class="dropdown-item" href="#">Something else here</a></li>
+				</ul>
 			</div>
 		</sec:authorize>
 	</header>
@@ -62,9 +71,9 @@
 							class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span>
 						</li>
 						<li class="nav_link" id="user-link"><i
-							class='bx bx-user nav_icon'></i> <span class="nav_name">Profile</span></li>
+							class='bx bx-user nav_icon'></i> <span class="nav_name">개인 정보</span></li>
 						<li class="nav_link" id="board-link"><i
-							class='bx bx-spreadsheet nav_icon'></i> <span class="nav_name">Board</span>
+							class='bx bx-spreadsheet nav_icon'></i> <span class="nav_name">게시판</span>
 						</li>
 						<li class="nav_link"><i
 							class='bx bx-message-square-detail nav_icon'></i> <span

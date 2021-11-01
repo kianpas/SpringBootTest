@@ -30,7 +30,7 @@ body {
 
 a {
 	display:grid;
-	grid-template-columns: max-content max-content;
+	/*grid-template-columns: max-content max-content;*/
     text-decoration: none;
     color: var(--first-color-light);
     align-items: center;

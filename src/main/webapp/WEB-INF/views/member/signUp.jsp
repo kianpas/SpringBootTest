@@ -22,8 +22,8 @@
 							<div class="col-md-12">
 								<label class="labels">아이디</label><input type="text"
 									class="form-control" placeholder="아이디" value="" name="id">
-								<button class="btn btn-primary profile-button" type="button"
-									id="checkBtn">중복 체크</button>
+								<button class="btn btn-primary profile-button btn-sm" type="button"
+									id="checkBtn" disabled>중복 체크</button>
 							</div>
 						</div>
 						<div class="row mt-3">
@@ -149,6 +149,19 @@ $("#signUpForm").submit(event => {
 })
 
 
+//체크 버튼 활성화
+$("[name=id]").change((event)=>{
+	const id = $(event.target).val();
+	console.log(id)	
+	if(id.length == 0){
+		$("#checkBtn").attr("disabled", true);
+	} else {
+		$("#checkBtn").attr("disabled", false);
+	}
+	
+})
+
+
 $("#checkBtn").click(() => {
 	const id = $("[name=id]").val();
 	console.log(id)
@@ -158,7 +171,7 @@ $("#checkBtn").click(() => {
 		data:{id},
 		contentType:"application/json; charset=utf-8"
 	}).done(data => {
-		console.log(data)
+		console.log(data);
 		data.available ? alert(`\${data.id}는 사용가능한 아이디입니다.`) 
 					   : alert(`\${data.id}는 사용불가능한 아이디입니다.`)
 	}).fail(console.log);
