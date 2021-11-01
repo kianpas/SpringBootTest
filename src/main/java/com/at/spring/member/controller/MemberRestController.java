@@ -39,8 +39,6 @@ public class MemberRestController {
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	@Autowired
-	AuthenticationManager authenticationManager;
 
 	@PostMapping("/insertMember")
 	public int insertMember(@RequestBody Member member) {

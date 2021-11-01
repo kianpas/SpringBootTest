@@ -102,7 +102,7 @@
 </div>
 <script>
 $("#editBtn").click((event) => {
-	const $editForm = $(event.target);
+	//const $editForm = $(event.target);
 	const id = '${principal.id}';
 	const password = null;
 	const name = $("#name").val();
@@ -137,35 +137,21 @@ $("#editBtn").click((event) => {
 			}
 		}).fail(console.log);
 });
+
+//취미 체크
 let hobbyArr = [];
 <c:forEach var="hobby" items="${principal.hobby}">
 	hobbyArr.push("${hobby}")
 </c:forEach>
 const $chkBox = $("[name=hobby]");
-console.log($chkBox)
-//const result = $chkBox.filter(chk => console.log(chk));
-//console.log(result)
-let chkArr = [];
+
 $chkBox.map((index, item) => {
 	console.log(item.value)
- 	chkArr.push(item.value)
- 	console.log($(item).attr("id"))
-
- 	if(hobbyArr.includes("운동")){
-		$("#exercise").attr("checked", true)
- 	 }
-	
- 	if(hobbyArr.includes("음악")){
- 		$("#music").attr("checked", true)
+ 	const id = $(item).attr("id");
+ 	if(hobbyArr.includes(`\${item.value}`)){
+		$(`#\${id}`).attr("checked", true)
  	 }
 
- 	if(hobbyArr.includes("여행")){
- 		$("#tour").attr("checked", true)
- 	 }
-
- 	if(hobbyArr.includes("등산")){
- 		$("#hike").attr("checked", true)
- 	 }
 })
 
 </script>
