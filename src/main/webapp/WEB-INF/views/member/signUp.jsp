@@ -124,16 +124,11 @@ $("#signUpForm").submit(event => {
 	const hobbyFn = $signUpForm.find("[name=hobby]:checked");
 	
 	hobbyFn.map((index, item)=>{
-		console.log($(item).val())
 		hobby.push($(item).val())
 	});
-	
-	console.log(gender);
-	console.log(hobby);
 
 	const member = {id, password, name, gender, birthday, email, phone, address, hobby};
 
-	console.log(member);
 	 $.ajax({
 		url:"${pageContext.request.contextPath}/member/insertMember",
 		method:"POST",
@@ -152,7 +147,7 @@ $("#signUpForm").submit(event => {
 //체크 버튼 활성화
 $("[name=id]").change((event)=>{
 	const id = $(event.target).val();
-	console.log(id)	
+
 	if(id.length == 0){
 		$("#checkBtn").attr("disabled", true);
 	} else {

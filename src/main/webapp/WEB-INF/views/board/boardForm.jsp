@@ -11,7 +11,7 @@
 			<div class="col-md-12 border-right">
 				<div class="p-3 py-5">
 					<div class="d-flex justify-content-between align-items-center mb-3">
-						<h4 class="text-right">Board Form</h4>
+						<h4 class="text-right">게시글 작성</h4>
 					</div>
 					<div class="row mt-3">
 						<div class="col-md-12">

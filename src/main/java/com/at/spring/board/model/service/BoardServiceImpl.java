@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.at.spring.board.model.dao.BoardDao;
 import com.at.spring.board.model.vo.Board;
+import com.at.spring.board.model.vo.BoardExt;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -27,7 +28,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public Board selectOneBoard(int no) {
+	public BoardExt selectOneBoard(int no) {
 		
 		return boardDao.selectOneBoard(no);
 	}

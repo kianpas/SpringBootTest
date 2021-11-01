@@ -11,8 +11,8 @@
 			from (select * from board order by reg_date desc) E
 		where rownum <![CDATA[<=]]> 5
 	</select>
-	<select id="selectOneBoard" resultType="board">
-		select * from board where no = #{no}
+	<select id="selectOneBoard" resultType="boardExt">
+		select * from board B left join member M on b.member_id = m.id where no = #{no}
 	</select>
 	<insert id="insertBoard">
 		insert into

@@ -3,12 +3,13 @@ package com.at.spring.board.model.service;
 import java.util.List;
 
 import com.at.spring.board.model.vo.Board;
+import com.at.spring.board.model.vo.BoardExt;
 
 public interface BoardService {
 
 	List<Board> selectBoardList();
 
-	Board selectOneBoard(int no);
+	BoardExt selectOneBoard(int no);
 
 	int insertBoard(Board board);
 

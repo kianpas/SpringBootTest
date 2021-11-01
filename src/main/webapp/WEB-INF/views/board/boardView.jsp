@@ -43,16 +43,28 @@ const boardDetail = () => {
 	})
 	.done(board => {
 		console.log(board);
-		const {no, title, memberId, content, regDate, readCount} = board;
+		const {no, title, memberId, content, regDate, readCount, name} = board;
 		let html = `<div class="col-md-12 border-right">
 						<div class="p-3 py-5">
 							<div class="d-flex justify-content-between align-items-center mb-3">
 								<h4 class="text-right">게시글</h4>
 							</div>
 							<div class="row mt-3">
+							<div class="col-md-12">
+								<label class="labels">글번호</label>
+								<h2>\${no}</h2>
+							</div>
+						</div>
+							<div class="row mt-3">
 								<div class="col-md-12">
 									<label class="labels">제목</label>
-									<h2>\${no}  \${title}</h2>
+									<h2>\${title}</h2>
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class="col-md-12">
+									<label class="labels">작성자</label>
+									<p>\${name}</p>
 								</div>
 							</div>
 							<div class="row mt-3">

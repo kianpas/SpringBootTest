@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.at.spring.board.model.vo.Board;
+import com.at.spring.board.model.vo.BoardExt;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {
@@ -27,7 +28,7 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public Board selectOneBoard(int no) {
+	public BoardExt selectOneBoard(int no) {
 		
 		return session.selectOne("board.selectOneBoard", no);
 	}

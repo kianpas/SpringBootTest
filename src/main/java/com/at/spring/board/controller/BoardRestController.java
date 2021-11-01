@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.at.spring.board.model.service.BoardService;
 import com.at.spring.board.model.vo.Board;
+import com.at.spring.board.model.vo.BoardExt;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -62,10 +63,10 @@ public class BoardRestController {
 	}
 
 	@GetMapping("/boardDetail/{no}")
-	public Board boardDetail(@PathVariable int no) {
+	public BoardExt boardDetail(@PathVariable int no) {
 		try {
 			log.debug("no {}", no);
-			Board board = boardService.selectOneBoard(no);
+			BoardExt board = boardService.selectOneBoard(no);
 			log.debug("board {}", board);
 
 			return board;
