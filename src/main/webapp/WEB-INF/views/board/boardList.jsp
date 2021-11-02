@@ -26,7 +26,6 @@ const selectBoardList = () => {
 		contentType:"application/json; charset=utf-8"
 	}).done(data => {
 			console.log(data)
-			
 			let html = `<thead>
 							<tr>
 								<th scope="col">번호</th>

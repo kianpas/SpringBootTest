@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="comment">
+	<select id="commentList" resultType="comment">
+		select c.*, m.name from cmt c left join member m on c.member_id = m.id where board_no = #{no}
+	</select>
+	<insert id="commentEnroll">
+		insert into
+			cmt (no, board_no, member_id, content, reg_date)
+		values(
+			seq_comment_no.nextval,
+			#{boardNo},
+			#{memberId},
+			#{content},
+			default
+		)
+	</insert>
+</mapper>

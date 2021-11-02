@@ -6,7 +6,7 @@
 
 <sec:authentication property="principal" var="principal" />
 <div id="board-datail"></div>
-
+<div id="commentList"></div>
 <script>
 const boardList = () =>{
 	location.href=`${pageContext.request.contextPath}/board/boardList`;
@@ -103,9 +103,90 @@ const boardDetail = () => {
 	.fail(console.log)
 }
 
+const commentList = () => {
+	const url = window.location.href;
+	const no = url.split("/")[6]
+	console.log(no)
+		let html = `<div class="col-md-12 border-right">
+						<div class="p-3 py-5">
+							<div class="d-flex justify-content-between align-items-center mb-3">
+								<h4 class="text-right">댓글</h4>
+							</div>
+							<div class="row mt-3" id="list"></div>
+						<div class="row mt-3">
+							<div class="col-md-12">
+								<label for="exampleFormControlTextarea2" class="labels">내용</label>
+								<textarea class="form-control" id="commentContent"
+									name="content" rows="3"></textarea>
+							</div>
+						</div>
+						<div class="mt-5 text-center">
+							<button class="btn btn-primary profile-button" type="button" onclick="commentBtn();">
+								등록</button>
+							</div>
+						</div>
+					</div>`;
+	$("#commentList").html(html); 
+	
+	$.ajax({
+		url:"${pageContext.request.contextPath}/comment/commentList/",
+		data:{no},
+		dataType:"json",
+	})
+	.done(commentList => {
+		console.log(commentList);
+		let html="";
+		$.map(commentList, (value, key)=>{
+			html += `<div class="row mt-3">
+				<div class="col-md-12">
+					<label for="exampleFormControlTextarea2" class="labels">\${value.name}</label>
+					<p>\${value.content}</p>
+				</div>
+			</div>`;
+		})
+		
+		
+		
+		$("#list").html(html);
+		
+		/* if(memberId == "${principal.id}") {
+			html +=	`<button type="button" class="btn btn-primary" onClick="boardUpdate(\${no});">수정</button>
+				<button type="button" class="btn btn-danger" onClick="boardDelete(\${no});">삭제</button>`;
+		};*/
+				
+		
+	})
+	.fail(console.log)
+}
+const commentBtn = () => {
+	const url = window.location.href;
+	const boardNo = url.split("/")[6]
+	console.log(boardNo)
+	const memberId = "${principal.id}";
+	const content = $("#commentContent").val();
+	const comment = {boardNo, memberId, content};
+	
+	console.log(comment)
+	 $.ajax({
+		url:"${pageContext.request.contextPath}/comment/commentEnroll",
+		contentType:"application/json; charset=utf-8",
+		data:JSON.stringify(comment),
+		method:"post",
+		dataType:"json",
+	})
+	.done(data=>{
+		console.log(data)
+		//const {result, boardNo} = data;
+		  if(result > 0){
+			location.href="${pageContext.request.contextPath}/board/boardView/"+boardNo;
+		} 
+	})
+	.fail(console.log) 
+}
+
 
 $(function() {
 	boardDetail();
-	
+	commentList();
 })
 </script>
