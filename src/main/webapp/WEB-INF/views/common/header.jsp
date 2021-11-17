@@ -68,7 +68,7 @@
 				<div class="nav_list">
 					<ul style="padding-left: 0px;">
 						<li class="nav_link" id="index-link"><i
-							class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span>
+							class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">대시보드</span>
 						</li>
 						<li class="nav_link" id="user-link"><i
 							class='bx bx-user nav_icon'></i> <span class="nav_name">개인 정보</span></li>

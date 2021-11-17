@@ -15,6 +15,7 @@
 	</div>
 </div>
 <script>
+console.log('${principal}');
 const indexBoardList = () =>{
 	$.ajax({
 		url:"${pageContext.request.contextPath}/board/indexBoardList",
@@ -51,7 +52,11 @@ const indexBoardList = () =>{
 const boardView = () => {
 	event.preventDefault();
 	const no = event.path[1].dataset.no;
-	location.href="${pageContext.request.contextPath}/board/boardView/"+no;
+	if('${principal}' == 'anonymousUser'){
+		return;
+	} else {
+		location.href="${pageContext.request.contextPath}/board/boardView/"+no;
+	}
 }
 
 
