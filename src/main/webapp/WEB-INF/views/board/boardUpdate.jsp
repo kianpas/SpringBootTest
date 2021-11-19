@@ -25,7 +25,7 @@
 
 <script>
 $("#back-btn").on("click", ()=>{
-	console.log(1111111)
+	location.href=`${pageContext.request.contextPath}/board/boardView`;
 })
 
 
