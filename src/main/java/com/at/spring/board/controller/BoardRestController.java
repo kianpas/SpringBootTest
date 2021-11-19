@@ -1,11 +1,15 @@
 package com.at.spring.board.controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.at.spring.board.model.service.BoardService;
 import com.at.spring.board.model.vo.Board;
@@ -37,11 +42,14 @@ public class BoardRestController {
 
 
 	@GetMapping("/selectBoardList")
-	public List<Board> selectboardList() {
+	public List<Board> selectboardList() throws Exception  {
 		try {
 			List<Board> boardList = boardService.selectBoardList();
-			// log.debug("boardList {}", boardList);
-
+			String url = "https://jsonplaceholder.typicode.com/users";
+			RestTemplate restTemplate = new RestTemplate();
+			
+			String response = restTemplate.getForObject(url, String.class);
+			log.debug("response {}", response);
 			return boardList;
 		} catch (Exception e) {
 			throw e;
@@ -49,6 +57,7 @@ public class BoardRestController {
 
 	}
 	
+	//인덱스화면
 	@GetMapping("/indexBoardList")
 	public List<Board> indexBoardList() {
 		try {
