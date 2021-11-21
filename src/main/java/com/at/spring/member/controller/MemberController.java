@@ -25,6 +25,8 @@ public class MemberController {
 	public void memberSignUp() {
 			
 	}
+	@GetMapping("/jusoPopup")
+	public void jusoPopup() {}
 
 	@GetMapping("/profile")
 	public String memberDetail(Authentication authentication, Model model) {

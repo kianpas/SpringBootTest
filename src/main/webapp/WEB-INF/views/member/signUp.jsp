@@ -22,8 +22,8 @@
 							<div class="col-md-12">
 								<label class="labels">아이디</label><input type="text"
 									class="form-control" placeholder="아이디" value="" name="id">
-								<button class="btn btn-primary profile-button btn-sm" type="button"
-									id="checkBtn" disabled>중복 체크</button>
+								<button class="btn btn-primary profile-button btn-sm"
+									type="button" id="checkBtn" disabled>중복 체크</button>
 							</div>
 						</div>
 						<div class="row mt-3">
@@ -76,6 +76,18 @@
 							<div class="col-md-12">
 								<label class="labels">주소</label><input type="text"
 									class="form-control" placeholder="주소" name="address">
+							<!-- 	<div class="emp_addr">
+									<label for="emp-addr" class="emp_addr_">주소</label> <img
+										src="https://pics.gmkt.kr/pc/ko/myg/find_address.png"
+										alt="주소찾기" class="addr-search" class="addr-search"
+										onclick="jusoPop();"> <input id="zipNo" name="zipNo"
+										type="text" class="emp_addr_input" readonly> <input
+										id="roadAddrPart1" name="roadAddrPart1" type="text"
+										class="emp_addr_input2" readonly> <input
+										id="addrDetail" name="addrDetail" type="text"
+										class="emp_addr_input2" placeholder="상세주소"> <input
+										id="roadFullAddr" type="hidden" name="empAddr" value="테스트용">
+								</div> -->
 							</div>
 						</div>
 						<div class="row mt-3">
@@ -171,5 +183,19 @@ $("#checkBtn").click(() => {
 					   : alert(`\${data.id}는 사용불가능한 아이디입니다.`)
 	}).fail(console.log);
 })
+
+
+function jusoPop(){
+	var pop = window.open("${pageContext.request.contextPath}/member/jusoPopup","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+}
+
+function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, 
+		rnMgtSn, bdMgtSn , detBdNmList, bdNm, bdKdcd, siNm, sggNm, emdNm, liNm, rn, udrtYn, buldMnnm, 
+		buldSlno, mtYn, lnbrMnnm, lnbrSlno, emdNo){
+		 document.form.roadFullAddr.value = roadFullAddr;
+		 document.form.roadAddrPart1.value = roadAddrPart1;
+		 document.form.addrDetail.value = addrDetail;
+		 document.form.zipNo.value = zipNo;
+}
 </script>
 </body>
