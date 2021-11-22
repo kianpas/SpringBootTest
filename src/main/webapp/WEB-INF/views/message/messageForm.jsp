@@ -46,9 +46,8 @@ $("#messageEnrollFrm").submit(e => {
 	e.preventDefault();
 	//jquery객체로 바꿈
 	const $frm = $(e.target);
-	
-	//const title = $frm.find("[name=title]").val();
-	const senderId = "${principal.id}";//$frm.find("[name=memberId]").val();
+
+	const senderId = "${principal.id}";
 	const receiverId = $frm.find("[name=receiverId]").val();
 	const content = $frm.find("[name=content]").val();
 	const message = {senderId, content, receiverId};
