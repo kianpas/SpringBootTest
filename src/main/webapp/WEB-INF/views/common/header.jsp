@@ -75,7 +75,7 @@
 						<li class="nav_link" id="board-link"><i
 							class='bx bx-spreadsheet nav_icon'></i> <span class="nav_name">게시판</span>
 						</li>
-						<li class="nav_link"><i
+						<li class="nav_link" id="message-link"><i
 							class='bx bx-message-square-detail nav_icon'></i> <span
 							class="nav_name">Messages</span></li>
 						<li class="nav_link" id="bookmark"><i
@@ -126,6 +126,10 @@
 	//프로필
 	$("#user-link").on("click", ()=>{
 		location.href="${pageContext.request.contextPath}/member/profile";
+	})
+	
+	$("#message-link").on("click", ()=>{
+		location.href="${pageContext.request.contextPath}/message/messagePage";
 	})
 	
 	//로그인
