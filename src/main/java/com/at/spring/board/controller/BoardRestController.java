@@ -4,14 +4,24 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
+import java.net.URLDecoder;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,6 +34,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.at.spring.board.model.service.BoardService;
 import com.at.spring.board.model.vo.Board;
@@ -45,10 +57,30 @@ public class BoardRestController {
 	public List<Board> selectboardList() throws Exception  {
 		try {
 			List<Board> boardList = boardService.selectBoardList();
-			String url = "https://jsonplaceholder.typicode.com/users";
-			RestTemplate restTemplate = new RestTemplate();
+			String url = "https://api.odcloud.kr/api/gov24/v1/serviceList";
+			String key = "";
 			
-			String response = restTemplate.getForObject(url, String.class);
+			String serviceKey = URLDecoder.decode(key, "UTF-8");
+			
+			HttpHeaders headers = new HttpHeaders();
+			//headers.add("serviceKey", serviceKey);
+			
+			String deKey = "";
+			
+			HttpEntity<?> headerEntity = new HttpEntity<>(headers);
+			
+			
+			URI uri = UriComponentsBuilder.fromUriString(url).queryParam("serviceKey", deKey).build(true).toUri();
+					
+			
+			
+			log.debug("uri {}", uri);
+			HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+			
+			RestTemplate restTemplate = new RestTemplate(factory);
+			
+			//ResponseEntity<?> response = restTemplate.exchange(uri, HttpMethod.GET, headerEntity, String.class);
+			ResponseEntity<?> response = restTemplate.getForEntity(uri, String.class);
 			log.debug("response {}", response);
 			return boardList;
 		} catch (Exception e) {
